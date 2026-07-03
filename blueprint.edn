@@ -1,0 +1,11 @@
+{:itonami.blueprint/id "cloud-itonami-6621"
+ :itonami.blueprint/name "Risk and damage evaluation"
+ :itonami.blueprint/isic-rev5 "6621"
+ :itonami.blueprint/domain :insurance/loss-adjustment
+ :itonami.blueprint/license "AGPL-3.0-or-later"
+ :itonami.blueprint/social-impact [:financial-inclusion :data-sovereignty :transparency]
+ :itonami.blueprint/governor :loss-adjustment-governor
+ :itonami.blueprint/required-technologies [:robotics :insurance :identity :forms :dmn :bpmn :audit-ledger]
+ :itonami.blueprint/optional-technologies []
+ :itonami.blueprint/status :public-oss
+ :itonami.blueprint/robotics true}
