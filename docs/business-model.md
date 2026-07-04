@@ -2,7 +2,7 @@
 
 ## Classification
 
-- Repository: `cloud-itonami-6621`
+- Repository: `cloud-itonami-isic-6621`
 - ISIC Rev.5: `6621`
 - Activity: independent loss adjusting and risk evaluation -- damage appraisal and risk assessment performed for insurers or insureds, independent of underwriting or claims-payment authority
 - Social impact: financial inclusion, data sovereignty, transparent audit

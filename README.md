@@ -1,4 +1,4 @@
-# cloud-itonami-6621
+# cloud-itonami-isic-6621
 
 Open Business Blueprint for **ISIC Rev.5 6621**: Risk and damage evaluation.
 

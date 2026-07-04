@@ -1,4 +1,4 @@
-{:itonami.blueprint/id "cloud-itonami-6621"
+{:itonami.blueprint/id "cloud-itonami-isic-6621"
  :itonami.blueprint/name "Risk and damage evaluation"
  :itonami.blueprint/isic-rev5 "6621"
  :itonami.blueprint/domain :insurance/loss-adjustment

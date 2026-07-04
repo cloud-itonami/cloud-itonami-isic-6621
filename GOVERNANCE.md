@@ -1,6 +1,6 @@
 # Governance
 
-`cloud-itonami-6621` is an OSS open-business blueprint for independent loss adjusting and risk evaluation -- damage appraisal and risk assessment performed for insurers or insureds, independent of underwriting or claims-payment authority.
+`cloud-itonami-isic-6621` is an OSS open-business blueprint for independent loss adjusting and risk evaluation -- damage appraisal and risk assessment performed for insurers or insureds, independent of underwriting or claims-payment authority.
 Governance covers both the capability layer and the operator model.
 
 ## Maintainers
