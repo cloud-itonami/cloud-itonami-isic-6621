@@ -32,6 +32,9 @@
 ## Trust Controls
 
 - no valuation report is finalized or issued without human sign-off
-- a fabricated or unsupported valuation forces a hold, not an override
-- every evaluation path is auditable
+- a fabricated jurisdiction methodology citation, an undisclosed
+  conflict of interest on the assigned adjuster, or an unsupported
+  valuation (required evidence not on file) forces a hold, not an
+  override
+- every intake, assessment, screening and finalization path is auditable
 - emergency manual override paths remain outside LLM control
