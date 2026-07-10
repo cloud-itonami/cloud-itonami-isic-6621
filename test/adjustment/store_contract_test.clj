@@ -21,7 +21,7 @@
       (is (= "田中 一郎" (:name (store/party s "party-2"))))
       (is (false? (:conflict-hit? (store/party s "party-2"))))
       (is (true? (:conflict-hit? (store/party s "party-4"))))
-      (is (= ["matter-1" "matter-2"] (mapv :id (store/all-matters s))))
+      (is (= ["matter-1" "matter-2" "matter-3"] (mapv :id (store/all-matters s))))
       (is (nil? (store/conflict-of s "party-2")))
       (is (nil? (store/assessment-of s "matter-1")))
       (is (= [] (store/ledger s)))

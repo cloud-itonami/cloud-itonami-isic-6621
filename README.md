@@ -137,8 +137,9 @@ toward the same lib.
 | `src/adjustment/governor.cljc` | **Loss Adjustment Governor** -- 3 HARD checks (spec-basis · conflict-of-interest · evidence-incomplete) + 1 soft (confidence/actuation gate) |
 | `src/adjustment/phase.cljc` | **Phase 0→3** -- read-only → assisted intake → assisted assess/screen → supervised (finalization always human; matter intake auto-eligible, no liability risk) |
 | `src/adjustment/operation.cljc` | **OperationActor** -- langgraph-clj StateGraph |
+| `src/adjustment/corporate_intel.cljc` | optional cross-reference into [`cloud-itonami-isic-8291`](https://github.com/cloud-itonami/cloud-itonami-isic-8291)'s `:disclosure/relationship-check` (ADR-2607110400 addendum 4) -- catches an adjuster clean on every LOCAL field but with an undisclosed relationship to the matter's counterparty in 8291's own sourced relationship-graph data; wired into `screen-conflict` via an injected fn, gated behind an OPTIONAL `:matter-id` on the request so every prior caller's behavior is unchanged unless explicitly opted in |
 | `src/adjustment/sim.cljc` | demo driver |
-| `test/adjustment/*_test.clj` | governor contract · phase invariants · store parity · registry conformance · facts coverage |
+| `test/adjustment/*_test.clj` | governor contract · phase invariants · store parity · registry conformance · facts coverage · corporate-intelligence integration |
 
 ## Business-process coverage (honest)
 

@@ -56,14 +56,38 @@
     "matter-2" {:id "matter-2" :case-reference "CLAIM-ATL-001"
                 :subject "123 Oak St - fire damage"
                 :requesting-party "party-1" :adjuster "party-4"
-                :jurisdiction "ATL" :status :intake}}
+                :jurisdiction "ATL" :status :intake}
+    ;; matter-3 pairs party-5 (adjuster) with party-6 (requesting-party)
+    ;; purely to exercise `adjustment.corporate-intel`'s cross-reference
+    ;; into cloud-itonami-isic-8291's :disclosure/relationship-check --
+    ;; see the party-5/party-6 comment below.
+    "matter-3" {:id "matter-3" :case-reference "CLAIM-JPN-002"
+                :subject "Downtown warehouse - water damage"
+                :requesting-party "party-6" :adjuster "party-5"
+                :jurisdiction "JPN" :status :intake}}
    :parties
    {"party-1" {:id "party-1" :name "Acme Insurance Co." :role :requesting-party
                :conflict-hit? false :disclosure-doc nil}
     "party-2" {:id "party-2" :name "田中 一郎" :role :adjuster
                :conflict-hit? false :disclosure-doc "form-jp-****1234"}
     "party-4" {:id "party-4" :name "J. Doe" :role :adjuster
-               :conflict-hit? true :disclosure-doc nil}}})
+               :conflict-hit? true :disclosure-doc nil}
+    ;; party-5/party-6 (+ matter-3 above) exist purely to prove the
+    ;; cloud-itonami-isic-8291 corporate-intelligence cross-reference
+    ;; catches an undisclosed conflict a LOCAL-ONLY screen would miss
+    ;; entirely: party-5 is clean on every local field (no
+    ;; :conflict-hit?, has a disclosure doc), but per 8291's OWN seeded
+    ;; demo relationship graph (dossier.store/demo-data), its official
+    ;; "山田 一郎(デモ)" (of-1) carries a direct :business-contact edge
+    ;; to "Jane Smith (demo)" (of-2) -- so cross-referencing this
+    ;; adjuster's name against matter-3's counterparty's name surfaces a
+    ;; relationship a local-only screen can never see. The names below
+    ;; must match 8291's demo data EXACTLY for the cross-reference to
+    ;; find them (verified via cloud-itonami-isic-8291's `dossier.llm`).
+    "party-5" {:id "party-5" :name "山田 一郎(デモ)" :role :adjuster
+               :conflict-hit? false :disclosure-doc "form-jp-****5678"}
+    "party-6" {:id "party-6" :name "Jane Smith (demo)" :role :requesting-party
+               :conflict-hit? false :disclosure-doc nil}}})
 
 ;; ----------------------------- shared commit logic -----------------------------
 
