@@ -17,11 +17,11 @@
     (is (= 2 (count (get-in result ["record" "supporting_evidence"]))))))
 
 (deftest valuation-validation-rules
-  (is (thrown? Exception (r/register-valuation "" 850000 ["photo"] "JPN" 1)))
-  (is (thrown? Exception (r/register-valuation "CLAIM-JPN-001" -1 ["photo"] "JPN" 1)))
-  (is (thrown? Exception (r/register-valuation "CLAIM-JPN-001" 850000 [] "JPN" 1)))
-  (is (thrown? Exception (r/register-valuation "CLAIM-JPN-001" 850000 ["photo"] "" 1)))
-  (is (thrown? Exception (r/register-valuation "CLAIM-JPN-001" 850000 ["photo"] "JPN" -1))))
+  (is (thrown? #?(:clj Exception :cljs js/Error) (r/register-valuation "" 850000 ["photo"] "JPN" 1)))
+  (is (thrown? #?(:clj Exception :cljs js/Error) (r/register-valuation "CLAIM-JPN-001" -1 ["photo"] "JPN" 1)))
+  (is (thrown? #?(:clj Exception :cljs js/Error) (r/register-valuation "CLAIM-JPN-001" 850000 [] "JPN" 1)))
+  (is (thrown? #?(:clj Exception :cljs js/Error) (r/register-valuation "CLAIM-JPN-001" 850000 ["photo"] "" 1)))
+  (is (thrown? #?(:clj Exception :cljs js/Error) (r/register-valuation "CLAIM-JPN-001" 850000 ["photo"] "JPN" -1))))
 
 (deftest valuation-history-is-append-only
   (let [v1 (r/register-valuation "CLAIM-JPN-001" 850000 ["photo"] "JPN" 0)
