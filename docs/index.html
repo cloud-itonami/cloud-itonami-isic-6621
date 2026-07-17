@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Risk and Damage Evaluation (ISIC 6621)</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      background-color: #f9f9f9;
+      color: #333;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+    }
+    @media (prefers-color-scheme: dark) {
+      html, body {
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+      }
+      a { color: #64b5f6; }
+      a:visited { color: #ba68c8; }
+      .card { background-color: #2d2d2d; border-color: #444; }
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    a:visited {
+      color: #663399;
+    }
+    header {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+    @media (prefers-color-scheme: dark) {
+      header { border-bottom-color: #444; }
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    .subtitle {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+    @media (prefers-color-scheme: dark) {
+      .subtitle { color: #aaa; }
+    }
+    .pitch {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    .pitch p {
+      margin-bottom: 1.2rem;
+    }
+    .links {
+      max-width: 900px;
+      margin: 2.5rem auto;
+      padding: 0 2rem;
+    }
+    .links h2 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      margin-top: 1.5rem;
+    }
+    .links ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .links li {
+      margin-bottom: 0.6rem;
+    }
+    .links a {
+      display: inline-block;
+      padding: 0.3rem 0;
+    }
+    .ctas {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .card {
+      flex: 1;
+      min-width: 280px;
+      padding: 2rem;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .card p {
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+    .card a {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      background-color: #0066cc;
+      color: white;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .card a:hover {
+      background-color: #0052a3;
+      text-decoration: none;
+    }
+    @media (prefers-color-scheme: dark) {
+      .card a {
+        background-color: #64b5f6;
+        color: #1a1a1a;
+      }
+      .card a:hover {
+        background-color: #42a5f5;
+      }
+    }
+    footer {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 2rem;
+      border-top: 1px solid #ddd;
+      font-size: 0.85rem;
+      color: #666;
+      text-align: center;
+    }
+    @media (prefers-color-scheme: dark) {
+      footer {
+        border-top-color: #444;
+        color: #aaa;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Risk and Damage Evaluation</h1>
+    <p class="subtitle">ISIC 6621 • Governed loss adjustment and independent valuation</p>
+  </header>
+
+  <div class="pitch">
+    <p>
+      An open-source, forkable business blueprint for independent loss adjusters and risk-evaluation consultancies.
+      Built on a portable Clojure runtime with governed workflows, this system drafts damage and risk valuations
+      backed by jurisdiction-specific methodology standards, checks for adjuster conflicts of interest, and ensures
+      every valuation proposal routes through a Loss Adjustment Governor before human approval.
+    </p>
+    <p>
+      The core premise: an LLM excels at drafting checklists and spotting gaps, but it has no notion of which
+      jurisdiction's standards are official, no way to verify an adjuster's independence, and no business finalizing
+      a real settlement valuation. The Loss Adjustment Governor wraps the LLM in a separate, overridable audit layer
+      that blocks fabricated methodologies, undisclosed conflicts, and unsupported evidence—making independence
+      a system property, not an assumption.
+    </p>
+    <p>
+      Deploy as a self-hosted instance in your jurisdiction, configure your own valuation standards and conflict-screening
+      rules, and let the immutable audit ledger prove every decision to regulators and customers alike.
+    </p>
+  </div>
+
+  <div class="links">
+    <h2>Learn more</h2>
+    <ul>
+      <li><a href="../README.md">Project README</a> — full architecture, design decisions, and business model</li>
+      <li><a href="operator-quickstart.md">Operator Quickstart</a> — how to run the demo, tests, and deploy</li>
+      <li><a href="business-model.md">Business Model</a> — customer profiles, offer, revenue streams, and trust controls</li>
+      <li><a href="operator-guide.md">Operator Guide</a> — minimum production controls and certification requirements</li>
+      <li><a href="adr/0001-architecture.md">Architecture Decision Record</a> — full design history and system choices</li>
+    </ul>
+  </div>
+
+  <div class="ctas">
+    <div class="card">
+      <h3>Self-host</h3>
+      <p>Fork this repository and run the Loss Adjustment Governor in your own jurisdiction. Customize valuation standards and conflict-screening rules.</p>
+      <a href="https://itonami.cloud/isco-1212/">Claim free self-host →</a>
+    </div>
+    <div class="card">
+      <h3>Managed hosting</h3>
+      <p>Deploy on itonami.cloud with managed infrastructure, SLA support, and monthly billing per adjuster seat.</p>
+      <a href="https://itonami.cloud/docs/go-live.md">See go-live docs →</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>Open business blueprint • AGPL-3.0-or-later • ISIC 6621 • Independent loss adjusting and risk evaluation</p>
+  </footer>
+</body>
+</html>
