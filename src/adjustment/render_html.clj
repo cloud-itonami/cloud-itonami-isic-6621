@@ -457,7 +457,7 @@
 
 (defn- parties-section [db ledger]
   (section
-   "Parties &amp; committed conflict-of-interest screenings"
+   "Parties & committed conflict-of-interest screenings"
    (str "Independence is the whole premise of this business. "
         (code ":conflict-hit?") " and " (code ":disclosure-doc") " are directory facts; "
         "the <em>verdict</em> column is the committed screening in the "
@@ -673,7 +673,7 @@
                                 :when v]
                             [(:op (:request r)) (:high-stakes? v)]))]
     (section
-     "Rollout phase table &amp; op gate — read from the code, not described"
+     "Rollout phase table & op gate — read from the code, not described"
      (str "Both tables are generated from " (code "adjustment.phase/phases") " and "
           (code "adjustment.phase/write-ops") " themselves. "
           (code ":valuation/finalize") " is deliberately absent from <em>every</em> phase&rsquo;s "
@@ -706,7 +706,7 @@
   (let [used (->> (store/all-matters db) (map :jurisdiction) (remove nil?) distinct sort)
         cov (facts/coverage used)]
     (section
-     "Jurisdiction spec-basis catalog &amp; honest coverage"
+     "Jurisdiction spec-basis catalog & honest coverage"
      (str "The governor rejects any assessment that cites no official source for its "
           "jurisdiction. Coverage is reported honestly: a jurisdiction absent from "
           (code "adjustment.facts/catalog") " has <strong>no</strong> spec-basis, full stop — "
