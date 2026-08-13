@@ -518,6 +518,28 @@
                    (ok "no — settled before the approval node"))))
      )))
 
+(defn- governor-verdict-cell
+  "Render a governor verdict HONESTLY.
+
+  `:ok?` is `(= 0 code)` -- 'commit-eligible', not 'clean'. It is FALSE
+  for a proposal the governor found nothing wrong with but escalated
+  anyway (`:actuation`, or advisor confidence under
+  `governor/confidence-floor`). Reading `:ok?` as 'no violation' labels
+  every escalation a violation, which is exactly the confusion the two
+  hold tables above exist to prevent -- so the violation list, not
+  `:ok?`, decides this cell."
+  [v]
+  (cond
+    (nil? v) (muted "—")
+    (seq (:violations v)) (crit (join-names (mapv :rule (:violations v))))
+    (:ok? v) (ok "clean — commit-eligible")
+    :else (ok (str "clean — no violation (escalated: "
+                   (cond (:high-stakes? v) ":actuation"
+                         (:escalate? v) (str "confidence " (:confidence v)
+                                             " < " governor/confidence-floor)
+                         :else "—")
+                   ")"))))
+
 (defn- phase-holds-section [runs]
   (section
    "Rollout-phase holds — a different thing from a governor refusal"
@@ -541,7 +563,7 @@
                       (esc (:label (get phase/phases (:phase f)) "—")))
                  (warn (kw (:phase-reason f)))
                  (ok "none — empty :violations")
-                 (if (:ok? v) (ok "clean") (warn (join-names (mapv :rule (:violations v))))))))))
+                 (governor-verdict-cell v))))))
 
 (defn- approval-section [runs]
   (section
@@ -586,7 +608,7 @@
             (row (code (:thread r))
                  (code (kw (:op (:request r))))
                  (code (:subject (:request r)))
-                 (if (:ok? v) (ok "clean — no violation") (crit "violation"))
+                 (governor-verdict-cell v)
                  (code (kw (:t f)))
                  (crit (join-names (:basis f)))
                  (ok "no")))))))

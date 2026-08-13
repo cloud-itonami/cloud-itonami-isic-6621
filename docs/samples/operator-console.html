@@ -2523,9 +2523,9 @@ img,svg { max-width: 100%; height: auto; }</style>
     <table>
       <thead><tr><th>Thread</th><th>Op</th><th>Phase</th><th>Phase reason</th><th>Violations</th><th>Governor verdict on the proposal</th></tr></thead>
       <tbody>
-        <tr><td><code>p1-gate</code></td><td><code>:jurisdiction/assess</code></td><td><span class="num">1</span> · assisted-intake</td><td><span class="warn">:phase-disabled</span></td><td><span class="ok">none — empty :violations</span></td><td><span class="ok">clean</span></td></tr>
-        <tr><td><code>p0-gate</code></td><td><code>:matter/intake</code></td><td><span class="num">0</span> · read-only</td><td><span class="warn">:phase-disabled</span></td><td><span class="ok">none — empty :violations</span></td><td><span class="ok">clean</span></td></tr>
-        <tr><td><code>unknown-op</code></td><td><code>:adjustment/not-an-op</code></td><td><span class="num">3</span> · supervised-auto</td><td><span class="warn">:phase-disabled</span></td><td><span class="ok">none — empty :violations</span></td><td><span class="warn">—</span></td></tr>
+        <tr><td><code>p1-gate</code></td><td><code>:jurisdiction/assess</code></td><td><span class="num">1</span> · assisted-intake</td><td><span class="warn">:phase-disabled</span></td><td><span class="ok">none — empty :violations</span></td><td><span class="ok">clean — commit-eligible</span></td></tr>
+        <tr><td><code>p0-gate</code></td><td><code>:matter/intake</code></td><td><span class="num">0</span> · read-only</td><td><span class="warn">:phase-disabled</span></td><td><span class="ok">none — empty :violations</span></td><td><span class="ok">clean — commit-eligible</span></td></tr>
+        <tr><td><code>unknown-op</code></td><td><code>:adjustment/not-an-op</code></td><td><span class="num">3</span> · supervised-auto</td><td><span class="warn">:phase-disabled</span></td><td><span class="ok">none — empty :violations</span></td><td><span class="ok">clean — no violation (escalated: confidence 0.0 &lt; 0.6)</span></td></tr>
       </tbody>
     </table>
   </section>
@@ -2550,7 +2550,7 @@ img,svg { max-width: 100%; height: auto; }</style>
     <table>
       <thead><tr><th>Thread</th><th>Op</th><th>Subject</th><th>Governor verdict</th><th>Ledger fact</th><th>Basis</th><th>SSoT written?</th></tr></thead>
       <tbody>
-        <tr><td><code>m3-finalize</code></td><td><code>:valuation/finalize</code></td><td><code>matter-3</code></td><td><span class="critical">violation</span></td><td><code>:approval-rejected</code></td><td><span class="critical">approver-rejected</span></td><td><span class="ok">no</span></td></tr>
+        <tr><td><code>m3-finalize</code></td><td><code>:valuation/finalize</code></td><td><code>matter-3</code></td><td><span class="ok">clean — no violation (escalated: :actuation)</span></td><td><code>:approval-rejected</code></td><td><span class="critical">approver-rejected</span></td><td><span class="ok">no</span></td></tr>
       </tbody>
     </table>
   </section>
