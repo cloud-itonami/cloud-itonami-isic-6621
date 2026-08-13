@@ -389,7 +389,7 @@
          "</tr></thead>\n"
          "      <tbody>\n" (str/join "\n" rows) "\n      </tbody>\n"
          "    </table>\n")
-    (str "    <p class=\"muted\">No rows — this run produced none.</p>\n")))
+    "    <p class=\"muted\">No rows — this run produced none.</p>\n"))
 
 (defn- section [title lede body]
   (str "  <section class=\"card\">\n"
@@ -489,7 +489,7 @@
       "cloud-itonami-isic-8291 corporate-intelligence cross-reference"
       "local screen / adjustment.facts")))
 
-(defn- hard-holds-section [runs ledger]
+(defn- hard-holds-section [runs]
   (let [by-thread (into {} (for [r runs
                                  :let [f (last (filter #(and (= :governor-hold (:t %))
                                                              (seq (:violations %)))
@@ -846,7 +846,7 @@
      "<main>\n"
      (matters-section db ledger)
      (parties-section db ledger)
-     (hard-holds-section runs ledger)
+     (hard-holds-section runs)
      (phase-holds-section runs)
      (approval-section runs)
      (refusal-section runs ledger)
