@@ -21,6 +21,20 @@
          {:local/root "../../kotoba-lang/langchain"}}}
   ;; clojure -M:dev:run  -> drive the demo through one OperationActor
   :run {:main-opts ["-m" "adjustment.sim"]}
+  ;; clojure -M:dev:render-html [out-file]
+  ;;   -> regenerate docs/samples/operator-console.html by driving the REAL
+  ;;      actor stack (operation -> governor -> store). Flagship checklist
+  ;;      item 2 (com-junkawasaki/root ADR-2607189300).
+  ;; jp-go-digital-design-system (DADS) is an :extra-deps of THIS alias, not
+  ;; a top-level :deps entry, on purpose: the actor itself must not grow a
+  ;; UI dependency, and `:run`/`:test`/`:cljs`/`:lint` stay byte-identical in
+  ;; their dependency surface. It is the workspace's base design system
+  ;; (com-junkawasaki/root CLAUDE.md, 2026-08-05) and is what `docs/index.html`
+  ;; already renders with, so the console matches this repo's own product LP.
+  :render-html {:extra-deps {io.github.kotoba-lang/jp-go-digital-design-system
+                             {:git/url "https://github.com/kotoba-lang/jp-go-digital-design-system"
+                              :git/sha "83db99546eabc53613ae826ea41d1533a3c574af"}}
+                :main-opts ["-m" "adjustment.render-html"]}
   :test {:extra-paths ["test"]
          :extra-deps {io.github.cognitect-labs/test-runner
                       {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
