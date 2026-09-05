@@ -389,7 +389,7 @@
          "</tr></thead>\n"
          "      <tbody>\n" (str/join "\n" rows) "\n      </tbody>\n"
          "    </table>\n")
-    "    <p class=\"muted\">No rows — this run produced none.</p>\n"))
+    (str "    <p class=\"muted\">No rows — this run produced none.</p>\n")))
 
 (defn- section [title lede body]
   (str "  <section class=\"card\">\n"
@@ -457,7 +457,7 @@
 
 (defn- parties-section [db ledger]
   (section
-   "Parties & committed conflict-of-interest screenings"
+   "Parties &amp; committed conflict-of-interest screenings"
    (str "Independence is the whole premise of this business. "
         (code ":conflict-hit?") " and " (code ":disclosure-doc") " are directory facts; "
         "the <em>verdict</em> column is the committed screening in the "
@@ -489,7 +489,7 @@
       "cloud-itonami-isic-8291 corporate-intelligence cross-reference"
       "local screen / adjustment.facts")))
 
-(defn- hard-holds-section [runs]
+(defn- hard-holds-section [runs ledger]
   (let [by-thread (into {} (for [r runs
                                  :let [f (last (filter #(and (= :governor-hold (:t %))
                                                              (seq (:violations %)))
@@ -518,28 +518,6 @@
                    (ok "no — settled before the approval node"))))
      )))
 
-(defn- governor-verdict-cell
-  "Render a governor verdict HONESTLY.
-
-  `:ok?` is `(= 0 code)` -- 'commit-eligible', not 'clean'. It is FALSE
-  for a proposal the governor found nothing wrong with but escalated
-  anyway (`:actuation`, or advisor confidence under
-  `governor/confidence-floor`). Reading `:ok?` as 'no violation' labels
-  every escalation a violation, which is exactly the confusion the two
-  hold tables above exist to prevent -- so the violation list, not
-  `:ok?`, decides this cell."
-  [v]
-  (cond
-    (nil? v) (muted "—")
-    (seq (:violations v)) (crit (join-names (mapv :rule (:violations v))))
-    (:ok? v) (ok "clean — commit-eligible")
-    :else (ok (str "clean — no violation (escalated: "
-                   (cond (:high-stakes? v) ":actuation"
-                         (:escalate? v) (str "confidence " (:confidence v)
-                                             " < " governor/confidence-floor)
-                         :else "—")
-                   ")"))))
-
 (defn- phase-holds-section [runs]
   (section
    "Rollout-phase holds — a different thing from a governor refusal"
@@ -563,7 +541,7 @@
                       (esc (:label (get phase/phases (:phase f)) "—")))
                  (warn (kw (:phase-reason f)))
                  (ok "none — empty :violations")
-                 (governor-verdict-cell v))))))
+                 (if (:ok? v) (ok "clean") (warn (join-names (mapv :rule (:violations v))))))))))
 
 (defn- approval-section [runs]
   (section
@@ -608,7 +586,7 @@
             (row (code (:thread r))
                  (code (kw (:op (:request r))))
                  (code (:subject (:request r)))
-                 (governor-verdict-cell v)
+                 (if (:ok? v) (ok "clean — no violation") (crit "violation"))
                  (code (kw (:t f)))
                  (crit (join-names (:basis f)))
                  (ok "no")))))))
@@ -695,7 +673,7 @@
                                 :when v]
                             [(:op (:request r)) (:high-stakes? v)]))]
     (section
-     "Rollout phase table & op gate — read from the code, not described"
+     "Rollout phase table &amp; op gate — read from the code, not described"
      (str "Both tables are generated from " (code "adjustment.phase/phases") " and "
           (code "adjustment.phase/write-ops") " themselves. "
           (code ":valuation/finalize") " is deliberately absent from <em>every</em> phase&rsquo;s "
@@ -728,7 +706,7 @@
   (let [used (->> (store/all-matters db) (map :jurisdiction) (remove nil?) distinct sort)
         cov (facts/coverage used)]
     (section
-     "Jurisdiction spec-basis catalog & honest coverage"
+     "Jurisdiction spec-basis catalog &amp; honest coverage"
      (str "The governor rejects any assessment that cites no official source for its "
           "jurisdiction. Coverage is reported honestly: a jurisdiction absent from "
           (code "adjustment.facts/catalog") " has <strong>no</strong> spec-basis, full stop — "
@@ -846,7 +824,7 @@
      "<main>\n"
      (matters-section db ledger)
      (parties-section db ledger)
-     (hard-holds-section runs)
+     (hard-holds-section runs ledger)
      (phase-holds-section runs)
      (approval-section runs)
      (refusal-section runs ledger)
