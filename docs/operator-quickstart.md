@@ -56,26 +56,26 @@ clojure -M:lint
 
 | Component | Role | File |
 |---|---|---|
-| **Adjuster-LLM** | Drafts valuation proposals, checklists, conflict assessments | `src/adjustment/adjusterllm.cljc` |
-| **Loss Adjustment Governor** | Independently verifies every proposal against spec-basis, conflicts, and evidence | `src/adjustment/governor.cljc` |
-| **Phase engine** | Lifecycle: read-only → assisted intake → assisted assess/screen → supervised finalization | `src/adjustment/phase.cljc` |
-| **Store** | Immutable audit ledger + draft proposal history (in-memory or Datomic) | `src/adjustment/store.cljc` |
-| **Operation actor** | Langgraph-clj StateGraph orchestrating the workflow | `src/adjustment/operation.cljc` |
-| **Facts catalog** | Per-jurisdiction valuation methodology requirements + spec-basis citations | `src/adjustment/facts.cljc` |
-| **Registry** | Draft valuation-report record schemas (no fabricated check-digit standards) | `src/adjustment/registry.cljc` |
-| **Corporate Intel** | Optional conflict screening via `cloud-itonami-isic-8291` relationship graph | `src/adjustment/corporate_intel.cljc` |
+| **Adjuster-LLM** | Drafts valuation proposals, checklists, conflict assessments | `src/adjustment/adjusterllm.cljk` |
+| **Loss Adjustment Governor** | Independently verifies every proposal against spec-basis, conflicts, and evidence | `src/adjustment/governor.cljk` |
+| **Phase engine** | Lifecycle: read-only → assisted intake → assisted assess/screen → supervised finalization | `src/adjustment/phase.cljk` |
+| **Store** | Immutable audit ledger + draft proposal history (in-memory or Datomic) | `src/adjustment/store.cljk` |
+| **Operation actor** | Langgraph-clj StateGraph orchestrating the workflow | `src/adjustment/operation.cljk` |
+| **Facts catalog** | Per-jurisdiction valuation methodology requirements + spec-basis citations | `src/adjustment/facts.cljk` |
+| **Registry** | Draft valuation-report record schemas (no fabricated check-digit standards) | `src/adjustment/registry.cljk` |
+| **Corporate Intel** | Optional conflict screening via `cloud-itonami-isic-8291` relationship graph | `src/adjustment/corporate_intel.cljk` |
 
 The Governor sits at `adjustment.governor/check-proposal` — it re-verifies every LLM proposal against the facts catalog, the matter's history, and the adjuster's background before the operator's approval workflow even sees it.
 
 ## Extend for your jurisdiction
 
-1. **Add jurisdiction facts**: Edit `src/adjustment/facts.cljc` and add a new entry to `:catalog` with your jurisdiction's official valuation-methodology requirements and spec-basis citation.
+1. **Add jurisdiction facts**: Edit `src/adjustment/facts.cljk` and add a new entry to `:catalog` with your jurisdiction's official valuation-methodology requirements and spec-basis citation.
    - Example: `:USA-NY {:standard "New York Property/Casualty Valuation Manual (2024)" :url "..." :required-evidence [...]}`
    - Never invent a standard; cite a real, publicly available source.
 
 2. **Customize conflict screening**: By default, the demo uses `mock-advisor` and a simple adjuster background check. See `adjustment.adjusterllm/screen-conflict` to inject your own conflict database (or cross-reference `corporate_intel` if you have access to `cloud-itonami-isic-8291`).
 
-3. **Configure the phase table**: Edit `src/adjustment/phase.cljc` to control which operations auto-commit at each phase vs. escalate. By default, `:valuation/finalize` never auto-commits (system property, tested at `test/adjustment/phase_test.clj:valuation-finalize-never-auto-at-any-phase`).
+3. **Configure the phase table**: Edit `src/adjustment/phase.cljk` to control which operations auto-commit at each phase vs. escalate. By default, `:valuation/finalize` never auto-commits (system property, tested at `test/adjustment/phase_test.clj:valuation-finalize-never-auto-at-any-phase`).
 
 4. **Deploy with a real store**: Replace `MemStore` with `DatomicStore` (requires `langchain.db`) for production persistence and live audit export.
 
