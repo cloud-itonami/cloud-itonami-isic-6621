@@ -2474,7 +2474,7 @@ img,svg { max-width: 100%; height: auto; }</style>
 </header>
 <p class="subtitle"><span class="badge">Adjuster-LLM ⊣ Loss Adjustment Governor</span> <span class="badge">generated from a real actor run</span> <span class="badge">valuation finalisation is always a human call</span></p>
 <div class="banner">
-<p>Read-only sample. Every id, name, number, verdict and hold reason below came out of one deterministic run of this repository&rsquo;s own actor against <code>adjustment.store/demo-data</code> — nothing on this page is hand-typed. Regenerate with <code>clojure -M:dev:render-html</code>.</p>
+<p>Read-only sample. Every id, name, number, verdict and hold reason below came out of one deterministic run of this repository&rsquo;s own actor against <code>adjustment.store/demo-data</code> — nothing on this page is hand-typed. Regenerate with <code>kbb -M:dev:render-html</code>.</p>
 <p>This actor does <strong>not</strong> hold a licence to practise as an independent adjuster or appraiser in any jurisdiction. It drafts and governs the workflow; a licensed operator supplies the licence, the methodology and the signature.</p>
 </div>
 <main>
@@ -2646,7 +2646,7 @@ img,svg { max-width: 100%; height: auto; }</style>
       <thead><tr><th>Property</th><th>Value</th></tr></thead>
       <tbody>
         <tr><td>Generator</td><td><code>adjustment.render-html</code></td></tr>
-        <tr><td>Command</td><td><code>clojure -M:dev:render-html</code></td></tr>
+        <tr><td>Command</td><td><code>kbb -M:dev:render-html</code></td></tr>
         <tr><td>Actor stack</td><td><code>adjustment.operation</code> → <code>adjustment.governor</code> → <code>adjustment.store</code>, driven through <code>langgraph.graph/run*</code></td></tr>
         <tr><td>Advisor</td><td><code>adjustment.adjusterllm/mock-advisor</code> with <code>adjustment.corporate-intel/check-relationship</code> injected (deterministic; no network, no live LLM)</td></tr>
         <tr><td>Store</td><td><code>adjustment.store/seed-db</code> — a MemStore over <code>adjustment.store/demo-data</code></td></tr>

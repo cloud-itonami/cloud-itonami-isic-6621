@@ -13,7 +13,7 @@ Get the Loss Adjustment Governor running locally in minutes, walk through a demo
 The demo walks a clean matter through intake → assessment → conflict screening → finalization (always escalates for human approval), then shows three HARD holds that the Governor catches before any human ever sees them.
 
 ```bash
-clojure -M:dev:run
+kbb -M:dev:run
 ```
 
 **Expected output**: The demo prints:
@@ -39,7 +39,7 @@ The Governor enforces four checks (three HARD, one soft):
 The test suite verifies the Governor's contract, phase invariants, store parity, and jurisdiction coverage.
 
 ```bash
-clojure -M:dev:test
+kbb -M:dev:test
 ```
 
 **Coverage**: Tests run in both Clojure JVM and ClojureScript (optional; requires `org.clojure/clojurescript`).
@@ -49,7 +49,7 @@ clojure -M:dev:test
 Static analysis checks for errors:
 
 ```bash
-clojure -M:lint
+kbb -M:lint
 ```
 
 ## Architecture overview

@@ -1,5 +1,5 @@
 (ns adjustment.sim
-  "Demo driver -- `clojure -M:dev:run`. Walks a clean matter through
+  "Demo driver -- `kbb -M:dev:run`. Walks a clean matter through
   intake -> jurisdiction valuation-methodology assessment -> conflict-of-
   interest screening -> valuation-finalization proposal (always
   escalates) -> human approval -> commit, then shows three HARD holds (a
