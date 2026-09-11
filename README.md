@@ -130,15 +130,15 @@ toward the same lib.
 
 | File | Role |
 |---|---|
-| `src/adjustment/store.cljc` | **Store** protocol -- `MemStore` ‖ `DatomicStore` (`langchain.db`) + append-only audit ledger + valuation-report history |
-| `src/adjustment/registry.cljc` | Valuation-report draft records (no fabricated international check-digit standard -- see docstring) |
-| `src/adjustment/facts.cljc` | Per-jurisdiction valuation-methodology requirement catalog with an official spec-basis citation per entry, honest coverage reporting |
-| `src/adjustment/adjusterllm.cljc` | **Adjuster-LLM Advisor** -- `mock-advisor` ‖ `llm-advisor`; intake/assessment/conflict-screening/finalization proposals |
-| `src/adjustment/governor.cljc` | **Loss Adjustment Governor** -- 3 HARD checks (spec-basis · conflict-of-interest · evidence-incomplete) + 1 soft (confidence/actuation gate) |
-| `src/adjustment/phase.cljc` | **Phase 0→3** -- read-only → assisted intake → assisted assess/screen → supervised (finalization always human; matter intake auto-eligible, no liability risk) |
-| `src/adjustment/operation.cljc` | **OperationActor** -- langgraph-clj StateGraph |
-| `src/adjustment/corporate_intel.cljc` | optional cross-reference into [`cloud-itonami-isic-8291`](https://github.com/cloud-itonami/cloud-itonami-isic-8291)'s `:disclosure/relationship-check` (ADR-2607110400 addendum 4) -- catches an adjuster clean on every LOCAL field but with an undisclosed relationship to the matter's counterparty in 8291's own sourced relationship-graph data; wired into `screen-conflict` via an injected fn, gated behind an OPTIONAL `:matter-id` on the request so every prior caller's behavior is unchanged unless explicitly opted in |
-| `src/adjustment/sim.cljc` | demo driver |
+| `src/adjustment/store.cljk` | **Store** protocol -- `MemStore` ‖ `DatomicStore` (`langchain.db`) + append-only audit ledger + valuation-report history |
+| `src/adjustment/registry.cljk` | Valuation-report draft records (no fabricated international check-digit standard -- see docstring) |
+| `src/adjustment/facts.cljk` | Per-jurisdiction valuation-methodology requirement catalog with an official spec-basis citation per entry, honest coverage reporting |
+| `src/adjustment/adjusterllm.cljk` | **Adjuster-LLM Advisor** -- `mock-advisor` ‖ `llm-advisor`; intake/assessment/conflict-screening/finalization proposals |
+| `src/adjustment/governor.cljk` | **Loss Adjustment Governor** -- 3 HARD checks (spec-basis · conflict-of-interest · evidence-incomplete) + 1 soft (confidence/actuation gate) |
+| `src/adjustment/phase.cljk` | **Phase 0→3** -- read-only → assisted intake → assisted assess/screen → supervised (finalization always human; matter intake auto-eligible, no liability risk) |
+| `src/adjustment/operation.cljk` | **OperationActor** -- langgraph-clj StateGraph |
+| `src/adjustment/corporate_intel.cljk` | optional cross-reference into [`cloud-itonami-isic-8291`](https://github.com/cloud-itonami/cloud-itonami-isic-8291)'s `:disclosure/relationship-check` (ADR-2607110400 addendum 4) -- catches an adjuster clean on every LOCAL field but with an undisclosed relationship to the matter's counterparty in 8291's own sourced relationship-graph data; wired into `screen-conflict` via an injected fn, gated behind an OPTIONAL `:matter-id` on the request so every prior caller's behavior is unchanged unless explicitly opted in |
+| `src/adjustment/sim.cljk` | demo driver |
 | `test/adjustment/*_test.clj` | governor contract · phase invariants · store parity · registry conformance · facts coverage · corporate-intelligence integration |
 
 ## Business-process coverage (honest)
