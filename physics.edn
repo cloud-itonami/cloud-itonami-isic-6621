@@ -1,0 +1,43 @@
+;; What this vertical's robot physically does, declared for
+;; kotoba.robotics.process (kotoba-lang/robotics). `kbb -M:dev:physics` runs it.
+;;
+;; README "Robotics premise": a damage-inspection drone captures site imagery
+;; and sensor readings for the human adjuster's evaluation (ISIC 6621, risk
+;; and damage evaluation). Flight is outside this solver set; declared here is
+;; the water-loss work around it: the site rover that carries the drone and
+;; moisture sensors, how long a flooded basement takes to drain through its
+;; floor drain before the inspection can start, and the portable pump-out
+;; line the adjuster's crew runs when it does not.
+;;
+;; Every number without a cited source is marked `estimate` in its :basis.
+;; Replacing an estimate with a sourced value is this bot's growth work.
+{:physics/schema "itonami.physical-ai.spec.v1"
+ :repo "cloud-itonami/cloud-itonami-isic-6621"
+ :cases
+ [{:id :flooded-basement-floor-drain
+   :kind :tank-drain
+   :procedure "flooded 80 m2 basement drains by gravity through its floor drain(s) until the slab is inspectable"
+   :params {:tank-area-m2 80.0 :h0-m 0.40 :h-target-m 0.02 :cd 0.62 :dt-s 1.0 :max-time-s 172800.0}
+   :sweep {:param :orifice-area-m2 :values [0.001 0.002 0.004 0.008 0.016 0.032]}
+   :quantity :time-to-target-s
+   :limit {:max 14400.0 :basis "estimate: inspection within the same working day (4 h) of arriving on site"}
+   :boundary {:lo 0.0005 :hi 0.05}}
+  {:id :basement-pump-out-hose
+   :kind :pipe-flow
+   :procedure "portable pump lifts basement water 3 m up and out through 20 m of 50 mm lay-flat hose"
+   :params {:diameter-m 0.05 :length-m 20.0 :roughness-m 1.5e-5 :elevation-m 3.0 :pump-efficiency 0.45}
+   :sweep {:param :q-m3s :values [0.001 0.002 0.004 0.006 0.008]}
+   :quantity :pump-power-w
+   :limit {:max 750.0 :basis "estimate: shaft power of a 1 hp-class portable submersible pump"}
+   :boundary {:lo 0.0005 :hi 0.015}}
+  {:id :sensor-kit-rover-on-slope
+   :kind :transport
+   :procedure "site rover carries the drone, moisture meters and thermal camera up a wet sloped yard to the loss"
+   :params {:mass-kg 60.0 :payload-kg 20.0 :distance-m 30.0 :v-max-mps 0.8 :a-max-mps2 0.5
+            :brake-decel-mps2 1.2 :drive-force-n 350.0 :crr 0.06
+            :cog-height-m 0.40 :payload-cog-height-m 0.65 :support-half-length-m 0.30
+            :max-time-s 1800.0}
+   :sweep {:param :slope-deg :values [0.0 5.0 10.0 15.0 20.0]}
+   :quantity :min-tipover-margin
+   :limit {:min 0.3 :basis "estimate: keep 30 % of the static tip-over margin in reserve on wet, uneven ground"}
+   :boundary {:lo 0.0 :hi 30.0}}]}
