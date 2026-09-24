@@ -23,7 +23,7 @@
   is always a query over an immutable log -- the audit trail an insurer
   or insured trusting an independent adjuster with a valuation needs,
   and the evidence an operator needs if a valuation is later disputed."
-  (:require #?(:clj  [clojure.edn :as edn]
+  (:require #?(:clj  [kotoba.lang.edn :as edn]
                :cljs [cljs.reader :as edn])
             [adjustment.registry :as registry]
             [langchain.db :as d]))
