@@ -26,7 +26,7 @@
   escalates or rejects the query) are proven separately below with a
   stub, since 8291's current demo data has no pairing that reaches them
   through this op."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [langgraph.graph :as g]
             [adjustment.store :as store]
             [adjustment.operation :as op]
