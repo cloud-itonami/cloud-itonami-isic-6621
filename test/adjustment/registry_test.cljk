@@ -1,5 +1,5 @@
 (ns adjustment.registry-test
-  (:require [clojure.test :refer [deftest is]]
+  (:require [kotoba.test :refer [deftest is]]
             [adjustment.registry :as r]))
 
 (deftest valuation-is-a-draft-not-a-real-report

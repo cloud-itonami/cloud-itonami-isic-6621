@@ -6,7 +6,7 @@
   `underwriting.store-contract-test` / `cloud-itonami-isic-6512`'s
   `casualty.store-contract-test` for the same pattern on the sibling
   actors."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [adjustment.store :as store]))
 
 (defn- backends []

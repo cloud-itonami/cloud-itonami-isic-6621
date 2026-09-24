@@ -8,7 +8,7 @@
     Governor would reject, `:valuation/finalize` NEVER auto-commits at
     any phase, and every decision (commit OR hold) leaves exactly one
     ledger fact."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [langgraph.graph :as g]
             [adjustment.store :as store]
             [adjustment.operation :as op]))
