@@ -69,7 +69,7 @@
   ;; a top-level :deps entry, on purpose: the actor itself must not grow a
   ;; UI dependency, and `:run`/`:test`/`:cljs`/`:lint` stay byte-identical in
   ;; their dependency surface. It is the workspace's base design system
-  ;; (com-junkawasaki/root CLAUDE.md, 2026-08-05) and is what `docs/index.html`
+  ;; (com-junkawasaki/root AGENTS.md, 2026-08-05) and is what `docs/index.html`
   ;; already renders with, so the console matches this repo's own product LP.
   :render-html {:extra-deps {io.github.kotoba-lang/jp-go-digital-design-system
                              {:git/url "https://github.com/kotoba-lang/jp-go-digital-design-system"
